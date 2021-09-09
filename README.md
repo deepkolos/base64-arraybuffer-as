@@ -11,6 +11,7 @@ Input: tests/screen.jpg(3.95MB)
 
 JS Cost: 314ms(4.13x)
 Wasm Cost: 76ms(1.00x)
+Buffer.toString Cost: 4ms(0.05x)
 ```
 
 ## 使用
@@ -27,12 +28,16 @@ const base64ArrayBuffer = require('base64-arraybuffer-as');
 
 const imgData = fs.readFileSync(__dirname + './tests/screen.jpg');
 const base64 = base64ArrayBuffer(imgData);
+
+// 当然NodeJS下应该使用Buffer.toString('base64');
 ```
 
 ## TODO
 
 1. 支持浏览器
 2. 支持微信小程序
+3. 增加构建wasm inline版本
+4. 增加base64 to arraybuffer
 
 ## 赞助
 

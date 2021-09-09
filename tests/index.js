@@ -32,3 +32,13 @@ const count = 1;
   }
   console.log('js encode cost', Date.now() - t);
 }
+
+{
+  const t = Date.now();
+  let output;
+  for (let index = 0; index < count; index++) {
+    output = imgData.toString('base64');
+  }
+  console.log('Buffer.toString encode cost', Date.now() - t);
+  assert.equal(output, jsOut);
+}

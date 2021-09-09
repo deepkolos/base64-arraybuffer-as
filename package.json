@@ -1,7 +1,7 @@
 {
   "name": "base64-arraybuffer-as",
   "author": "DeepKolos<deepkolos@qq.com>",
-  "description": "base64-arraybuffer assemblyscript version",
+  "description": "base64-arraybuffer assemblyscript version (about 4x faster then js version)",
   "main": "index.js",
   "module": "index.js",
   "keywords": [
