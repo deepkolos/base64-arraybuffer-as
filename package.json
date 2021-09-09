@@ -1,0 +1,28 @@
+{
+  "name": "base64-arraybuffer-as",
+  "author": "DeepKolos<deepkolos@qq.com>",
+  "description": "base64-arraybuffer assemblyscript version",
+  "main": "index.js",
+  "module": "index.js",
+  "keywords": [
+    "wasm",
+    "base64",
+    "arraybuffer",
+    "as"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "asbuild:untouched": "asc assembly/index.ts --target debug --exportRuntime --transform as-bind",
+    "asbuild:optimized": "asc assembly/index.ts --target release --exportRuntime --transform as-bind",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
+    "test": "node tests"
+  },
+  "dependencies": {
+    "@assemblyscript/loader": "^0.19.12",
+    "as-bind": "^0.8.2",
+    "as-string-sink": "^0.4.2"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.19.12"
+  }
+}
