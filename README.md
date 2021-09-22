@@ -6,12 +6,29 @@
 
 ```yml
 CPU: i9 10900es
-Node: 16.8.0
 Input: tests/screen.jpg(3.95MB)
 
+Node: 16.8.0
 JS Cost: 314ms(4.13x)
 Wasm Cost: 76ms(1.00x)
 Buffer.toString Cost: 4ms(0.05x)
+
+Chrome: 96
+JS Cost: 256ms(2.20x)
+Wasm Cost: 116ms(1.00x)
+
+Firefox: 94
+JS Cost: 327ms(0.95x)
+Wasm Cost: 343ms(1.00x)
+
+Phone: Redmi note 10 Pro
+WeChat WebView: 
+JS Cost: 359ms(2.28x)
+Wasm Cost: 157ms(1.00x)
+
+QQ Browser: 11.9.6
+JS Cost: 366ms(2.61x)
+Wasm Cost: 140ms(1.00x)
 ```
 
 ## 使用
@@ -34,7 +51,7 @@ const base64 = base64ArrayBuffer(imgData);
 
 ## TODO
 
-1. 支持浏览器
+1. 支持浏览器 (done 火狐下js比wasm快
 2. 支持微信小程序
 3. 增加构建wasm inline版本
 4. 增加base64 to arraybuffer
