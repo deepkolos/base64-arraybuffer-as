@@ -7,29 +7,23 @@
 ```yml
 CPU: i9 10900es
 Input: tests/screen.jpg(3.95MB)
-
-Node: 16.8.0
-JS Cost: 314ms(4.13x)
-Wasm Cost: 76ms(1.00x)
-Buffer.toString Cost: 4ms(0.05x)
-
-Chrome: 96
-JS Cost: 256ms(2.20x)
-Wasm Cost: 116ms(1.00x)
-
-Firefox: 94
-JS Cost: 327ms(0.95x)
-Wasm Cost: 343ms(1.00x)
-
-Phone: Redmi note 10 Pro
-WeChat WebView: 
-JS Cost: 359ms(2.28x)
-Wasm Cost: 157ms(1.00x)
-
-QQ Browser: 11.9.6
-JS Cost: 366ms(2.61x)
-Wasm Cost: 140ms(1.00x)
 ```
+
+| Host       | Js           | Wasm         | Other                            |
+| ---------- | ------------ | ------------ | -------------------------------- |
+| Node 16.8  | 314ms(4.13x) | 76ms(1.00x)  | Buffer.toString Cost: 4ms(0.05x) |
+| Chrome 96  | 256ms(2.20x) | 116ms(1.00x) |                                  |
+| Firefox 94 | 327ms(0.95x) | 343ms(1.00x) |                                  |
+
+```yml
+Phone: Redmi note 10 Pro
+Input: tests/screen.jpg(3.95MB)
+```
+
+| Host              | Js           | Wasm         | Other |
+| ----------------- | ------------ | ------------ | ----- |
+| WeChat WebView    | 359ms(2.28x) | 157ms(1.00x) |       |
+| QQ Browser 11.9.6 | 366ms(2.61x) | 140ms(1.00x) |       |
 
 ## 使用
 
@@ -49,12 +43,26 @@ const base64 = base64ArrayBuffer(imgData);
 // 当然NodeJS下应该使用Buffer.toString('base64');
 ```
 
+### Browser
+
+```js
+import * as AsBind from 'as-bind';
+
+AsBind.instantiate(
+  // your wasm location
+  fetch('./build/optimized.wasm').then(i => i.arrayBuffer()),
+).then(async ({ exports }) => {
+  const imageData = new Uint8Array([0, 1, 2, 3, 4, 5]);
+  const output = exports.base64ArrayBuffer(imageData);
+});
+```
+
 ## TODO
 
-1. 支持浏览器 (done 火狐下js比wasm快
+1. 支持浏览器 (done 火狐下 js 比 wasm 快
 2. 支持微信小程序
-3. 增加构建wasm inline版本
-4. 增加base64 to arraybuffer
+3. 增加构建 wasm inline 版本
+4. 增加 base64 to arraybuffer
 
 ## 赞助
 
