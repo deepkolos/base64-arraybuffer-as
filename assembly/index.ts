@@ -33,11 +33,11 @@ let chunk: u32;
 
 // prettier-ignore
 export function base64ArrayBuffer(bytes: Uint8Array): string {
-  const stringSink = new StringSink();
-
   let byteLength = bytes.byteLength;
   let byteRemainder = byteLength % 3;
   let mainLength = byteLength - byteRemainder;
+
+  const stringSink = new StringSink('', (mainLength / 3 + 1) * 4);
 
   // Main loop deals with bytes in chunks of 3
   for (let i = 0; i < mainLength; i = i + 3) {
