@@ -2,6 +2,9 @@
 
 一个用 AssemblyScript 编写的 base64-arraybuffer
 
+> 发现个手写 wat 的 base64 encoder/decoder, 支持 simd, threads 等 [fast-base64](https://github.com/mitschabaude/fast-base64), 性能强多了
+> 看了下实现, 应该主要优化方法是利用TextDecoder拼接字符串, 本仓库则是用as-string-sink拼接字符串
+
 ## 性能
 
 ```yml
@@ -14,6 +17,13 @@ Input: tests/screen.jpg(3.95MB)
 | Node 16.8  | 314ms(4.13x) | 76ms(1.00x)  | Buffer.toString Cost: 4ms(0.05x) |
 | Chrome 96  | 256ms(2.20x) | 116ms(1.00x) |                                  |
 | Firefox 94 | 327ms(0.95x) | 343ms(1.00x) |                                  |
+
+### 但是 fast-base64 性能及其强大
+
+| Host       | Js             | Wasm          | Other |
+| ---------- | -------------- | ------------- | ----- |
+| Chrome 97  | 21.89ms(2.20x) | 12.5ms(1.00x) |       |
+| Firefox 96 | 14ms(0.95x)    | 7ms(1.00x)    |       |
 
 ```yml
 Phone: Redmi note 10 Pro
